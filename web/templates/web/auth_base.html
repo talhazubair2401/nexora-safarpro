@@ -1,0 +1,63 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ APP_NAME }}{% endblock %}</title>
+<link rel="icon" href="{% static 'safarpro/img/nexora-mark.svg' %}" type="image/svg+xml">
+<link rel="stylesheet" href="{% static 'safarpro/css/app.css' %}?v={{ APP_VERSION }}">
+<style>
+body{min-height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.au-side{background:var(--side);color:#C9D3E1;padding:48px max(32px,5vw);display:flex;flex-direction:column;justify-content:space-between;gap:40px;position:relative;overflow:hidden}
+.au-side::after{content:"";position:absolute;right:-120px;bottom:-120px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(110,231,183,.12);box-shadow:0 0 0 60px rgba(110,231,183,.03),0 0 0 140px rgba(110,231,183,.02)}
+.au-brand{display:flex;align-items:center;gap:12px}
+.au-brand .logo{width:42px;height:42px}
+.au-brand b{display:block;color:#fff;font-size:20px;letter-spacing:-.01em}
+.au-brand small{font-size:11px;letter-spacing:.16em;color:#7D8BA1;font-weight:600}
+.au-side h1{color:#fff;font-size:30px;line-height:1.2;max-width:16ch}
+.au-side p{max-width:44ch;margin-top:12px;color:#A9B6C8}
+.au-points{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-direction:column;gap:10px;font-size:13.5px}
+.au-points li{display:flex;gap:10px;align-items:center}
+.au-points .ic{color:#6EE7B7}
+.au-foot{font-size:12px;color:#7D8BA1}
+.au-main{display:flex;align-items:center;justify-content:center;padding:40px max(16px,4vw);background:var(--bg)}
+.au-card{width:100%;max-width:440px}
+.au-card h2{font-size:22px}
+.au-card .sub{color:var(--tx2);margin:6px 0 22px}
+.au-card .fld{margin-bottom:14px}
+.au-card .btn-p{width:100%;height:42px;margin-top:6px}
+.au-err{background:var(--err-bg);color:var(--err-tx);border-radius:8px;padding:10px 12px;font-size:13px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start}
+.au-wide{max-width:640px}
+.demo-roles{display:flex;flex-direction:column;gap:10px}
+.demo-role{width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;border:1px solid var(--bd);border-radius:12px;background:var(--card);cursor:pointer;font:inherit;color:inherit;transition:border-color .15s,box-shadow .15s,transform .15s}
+.demo-role:hover,.demo-role:focus-visible{border-color:var(--em);box-shadow:0 4px 14px rgba(15,23,42,.08);transform:translateY(-1px);outline:none}
+.demo-role>.ic{margin-left:auto;color:var(--tx3);flex:none}
+.demo-role:hover>.ic{color:var(--em)}
+.dr-av{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--em-l);color:var(--em-tx);font-weight:700;font-size:13px}
+.dr-t b{display:block;font-size:14.5px}
+.dr-t small{display:block;color:var(--tx2);font-size:12.5px;margin-top:2px;line-height:1.4}
+.demo-note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;margin-top:18px}
+.demo-note .ic{flex:none;margin-top:2px}
+@media (max-width:860px){body{grid-template-columns:1fr}.au-side{padding:28px 20px}.au-side h1{font-size:22px}.au-points,.au-side p{display:none}}
+</style>
+</head>
+<body>
+{% include "web/_icons.html" %}
+<section class="au-side">
+ <div class="au-brand">{% include "web/_logo.html" %}<div><b>SafarPro</b><small>BY NEXORA</small></div></div>
+ <div>
+  <h1>{% block headline %}Your entire travel business. One connected system.{% endblock %}</h1>
+  {% if DEMO_MODE %}<p>Bookings, tickets, visas, Umrah, tours, payments and double-entry accounts. The desktop edition runs fully offline on a Windows PC — this online copy is a public demo with fictional data.</p>
+  <ul class="au-points">
+   <li><svg class="ic"><use href="#i-hard-drive"></use></svg>Desktop edition: data stays in a local database on the PC</li>{% else %}<p>Bookings, tickets, visas, Umrah, tours, payments and double-entry accounts — running on this PC, with no internet needed.</p>
+  <ul class="au-points">
+   <li><svg class="ic"><use href="#i-hard-drive"></use></svg>Your data stays in a local database on this computer</li>{% endif %}
+   <li><svg class="ic"><use href="#i-shield-check"></use></svg>Role-based access checked on every action</li>
+   <li><svg class="ic"><use href="#i-database"></use></svg>Verified backups of records and documents</li>
+  </ul>
+ </div>
+ <div class="au-foot">© Nexora · {{ APP_NAME }} {{ APP_VERSION }} · {% if DEMO_MODE %}Online demo{% else %}Offline edition{% endif %}</div>
+</section>
+<main class="au-main"><div class="au-card {% block cardclass %}{% endblock %}">{% block content %}{% endblock %}</div></main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+Copyright (c) 2026 Talha Zubair (Nexora Software & Web Solutions). All rights reserved.
+
+This repository is published so that clients and employers can review the code
+and try the public demo. No license is granted to copy, modify, distribute,
+sublicense, sell or deploy this software, in whole or in part, without prior
+written permission from the copyright holder.
+
+Third-party components keep their own licenses:
+  - Django (BSD-3-Clause), waitress (ZPL 2.1)
+  - Inter font (SIL Open Font License 1.1) — web/static/safarpro/fonts/Inter-LICENSE.txt
+  - Lucide icons (ISC) — web/static/safarpro/LUCIDE-LICENSE.txt
+
+For licensing or a demo for your agency: nexoraservices90@gmail.com

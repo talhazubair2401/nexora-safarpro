@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+wheels/
+*.sqlite3
+*.sqlite3-*
+secret_key.txt
+*.log
+node_modules/
+.DS_Store
+Thumbs.db

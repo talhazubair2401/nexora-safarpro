@@ -1,0 +1,8 @@
+{% extends "web/auth_base.html" %}
+{% block title %}{{ title }} · {{ APP_NAME }}{% endblock %}
+{% block content %}
+<p class="mono mut">Error {{ code }}</p>
+<h2>{{ title }}</h2>
+<p class="sub">{{ text }}</p>
+<a class="btn btn-p" href="/">Back to SafarPro</a>
+{% endblock %}

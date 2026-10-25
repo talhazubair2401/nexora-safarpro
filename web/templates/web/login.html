@@ -1,0 +1,32 @@
+{% extends "web/auth_base.html" %}
+{% block title %}Sign in · {{ APP_NAME }}{% endblock %}
+{% block content %}
+{% if demo %}
+<h2>Try the live demo</h2>
+<p class="sub">Choose a role to sign in with one click. Each role sees only what it's allowed to — the server enforces it on every action.</p>
+<div class="demo-roles">
+ {% for a in demo %}
+ <form method="post" action="{% url 'demo_login' %}">
+  {% csrf_token %}<input type="hidden" name="username" value="{{ a.username }}">
+  <button class="demo-role" type="submit">
+   <span class="dr-av">{{ a.ini }}</span>
+   <span class="dr-t"><b>{{ a.role }}</b><small>{{ a.name }} · {{ a.desc }}</small></span>
+   <svg class="ic"><use href="#i-arrow-right"></use></svg>
+  </button>
+ </form>
+ {% endfor %}
+</div>
+<p class="mut demo-note"><svg class="ic"><use href="#i-info"></use></svg><span>All data is fictional. Anything you change is visible to other visitors and is wiped when the demo resets{% if demo_reset %} (next reset {{ demo_reset|date:"j M, H:i" }} PKT){% endif %}.</span></p>
+{% else %}
+<h2>Sign in</h2>
+<p class="sub">Use the account your administrator created for you.</p>
+{% if error %}<div class="au-err" role="alert"><svg class="ic"><use href="#i-circle-alert"></use></svg>{{ error }}</div>{% endif %}
+<form method="post" novalidate>
+ {% csrf_token %}
+ <div class="fld"><label for="u">Username</label><input id="u" name="username" value="{{ username }}" autocomplete="username" autofocus required></div>
+ <div class="fld"><label for="p">Password</label><input id="p" name="password" type="password" autocomplete="current-password" required></div>
+ <button class="btn btn-p" type="submit"><svg class="ic"><use href="#i-log-in"></use></svg>Sign in</button>
+</form>
+<p class="mut" style="font-size:12px;margin-top:18px">Forgot your password? An administrator can reset it from Employees &amp; Roles.</p>
+{% endif %}
+{% endblock %}

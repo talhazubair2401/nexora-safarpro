@@ -1,0 +1,30 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token }}">
+<title>{{ APP_NAME }}</title>
+<link rel="icon" href="{% static 'safarpro/img/nexora-mark.svg' %}" type="image/svg+xml">
+<link rel="stylesheet" href="{% static 'safarpro/css/app.css' %}?v={{ APP_VERSION }}">
+</head>
+<body>
+{% include "web/_icons.html" %}
+<aside class="sb" id="sb" aria-label="Main navigation"></aside>
+<div class="ov" id="ov"></div>
+<div class="main">
+ <header class="hd" id="hd"></header>
+ <div id="banners"></div>
+ <main class="ct" id="mn" tabindex="-1"><div id="boot-loader"><i></i>Loading {{ APP_NAME }}…</div></main>
+</div>
+<div id="modals"></div>
+<div id="pops"></div>
+<div id="toasts" role="status" aria-live="polite"></div>
+<div id="tip" hidden></div>
+<script src="{% static 'safarpro/js/core.js' %}?v={{ APP_VERSION }}"></script>
+<script src="{% static 'safarpro/js/ui.js' %}?v={{ APP_VERSION }}"></script>
+<script src="{% static 'safarpro/js/actions.js' %}?v={{ APP_VERSION }}"></script>
+<script src="{% static 'safarpro/js/pages1.js' %}?v={{ APP_VERSION }}"></script>
+<script src="{% static 'safarpro/js/pages2.js' %}?v={{ APP_VERSION }}"></script>
+</body>
+</html>

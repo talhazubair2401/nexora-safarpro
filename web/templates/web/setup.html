@@ -1,0 +1,28 @@
+{% extends "web/auth_base.html" %}
+{% block title %}Set up · {{ APP_NAME }}{% endblock %}
+{% block headline %}Welcome to Nexora SafarPro.{% endblock %}
+{% block cardclass %}au-wide{% endblock %}
+{% block content %}
+<h2>Set up your agency</h2>
+<p class="sub">This runs once. You'll create the administrator account — choose a strong password and keep it safe.</p>
+{% if errors.general %}<div class="au-err" role="alert">{{ errors.general }}</div>{% endif %}
+<form method="post" novalidate>
+ {% csrf_token %}
+ <div class="fgrid">
+  <div class="fsec">Agency</div>
+  <div class="fld {% if errors.org_name %}bad{% endif %}"><label for="org">Agency name <span class="req">*</span></label><input id="org" name="org_name" value="{{ v.org_name }}" required>{% if errors.org_name %}<small class="err">{{ errors.org_name }}</small>{% endif %}</div>
+  <div class="fld {% if errors.city %}bad{% endif %}"><label for="city">City <span class="req">*</span></label><input id="city" name="city" value="{{ v.city|default:'Lahore' }}" required>{% if errors.city %}<small class="err">{{ errors.city }}</small>{% endif %}</div>
+  <div class="fld {% if errors.branch_name %}bad{% endif %}"><label for="bn">Main branch name <span class="req">*</span></label><input id="bn" name="branch_name" value="{{ v.branch_name|default:'Main Branch' }}" required>{% if errors.branch_name %}<small class="err">{{ errors.branch_name }}</small>{% endif %}</div>
+  <div class="fld {% if errors.branch_code %}bad{% endif %}"><label for="bc">Branch code <span class="req">*</span></label><input id="bc" name="branch_code" value="{{ v.branch_code|default:'LHR' }}" maxlength="6" required>{% if errors.branch_code %}<small class="err">{{ errors.branch_code }}</small>{% endif %}<small class="help">2–6 letters, used on receipts and reports.</small></div>
+  <div class="fsec">Administrator</div>
+  <div class="fld {% if errors.admin_name %}bad{% endif %}"><label for="an">Full name <span class="req">*</span></label><input id="an" name="admin_name" value="{{ v.admin_name }}" required>{% if errors.admin_name %}<small class="err">{{ errors.admin_name }}</small>{% endif %}</div>
+  <div class="fld"><label for="em">Email</label><input id="em" name="email" type="email" value="{{ v.email }}"></div>
+  <div class="fld {% if errors.username %}bad{% endif %}"><label for="un">Username <span class="req">*</span></label><input id="un" name="username" value="{{ v.username }}" autocomplete="username" required>{% if errors.username %}<small class="err">{{ errors.username }}</small>{% endif %}</div>
+  <div></div>
+  <div class="fld {% if errors.password %}bad{% endif %}"><label for="pw">Password <span class="req">*</span></label><input id="pw" name="password" type="password" autocomplete="new-password" required>{% if errors.password %}<small class="err">{{ errors.password }}</small>{% else %}<small class="help">At least 8 characters, not all numbers, not a common password.</small>{% endif %}</div>
+  <div class="fld {% if errors.password2 %}bad{% endif %}"><label for="pw2">Repeat password <span class="req">*</span></label><input id="pw2" name="password2" type="password" autocomplete="new-password" required>{% if errors.password2 %}<small class="err">{{ errors.password2 }}</small>{% endif %}</div>
+  <div class="fld full"><label class="chk"><input type="checkbox" name="sample"> Add fictional sample records so I can try SafarPro first</label><small class="help">Leave this unticked for real business use. Sample data is clearly marked and can't be mixed into a real installation later.</small></div>
+ </div>
+ <button class="btn btn-p" type="submit">Create agency &amp; sign in</button>
+</form>
+{% endblock %}
